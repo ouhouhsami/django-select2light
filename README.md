@@ -1,0 +1,60 @@
+Django-Select2Light
+===================
+
+This is a [Django](https://www.djangoproject.com/) integration of [Select2](http://ivaynberg.github.com/select2/).
+
+The app includes Select2 driven Django Widgets, and is based on an initial work by [AppleGrew](https://github.com/applegrew)
+
+Installation
+============
+
+1. Install `django_select2light`
+
+        pip install django_select2light
+
+2. Add `select2light` to your `INSTALLED_APPS` in your project settings.
+
+3. When deploying on production server, run
+
+        python manage.py collectstatic
+
+
+External Dependencies
+=====================
+
+* Django - This is obvious.
+* django-floppyforms, used to create the select2 html template
+* django-tastypie, used to build the ajax requests
+* jQuery
+
+
+Usage
+=====
+
+* Create a ModelResource for resources you would like to use Select2 as widget. For this, you should read the tastypie documentation (tastypie in INSTALLED_APPS, create the ModelResource in api.py, set the urls with your API enabled)
+* Create a form, and set the widget you want to use on ModelChoiceField or ModelMultipleChoiceField. For Ajax Widget, you must set the related tastypie keys: resource_name and api_name. 
+
+
+Example Application
+===================
+Please see `testapp` application. This application is used to manually test the functionalities of this package. This also serves as a good example.
+
+You need only Django 1.4.2 or above to run that.
+
+
+License
+=======
+
+Copyright 2012 Samuel Goldszmidt
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this project except in compliance with the License.
+You may obtain a copy of the License at
+
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
