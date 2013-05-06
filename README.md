@@ -37,9 +37,29 @@ Usage
 
 Example Application
 ===================
-Please see `testapp` application. This application is used to manually test the functionalities of this package. This also serves as a good example.
 
-You need only Django 1.4.2 or above to run that.
+Please see `testapp` application. 
+This application is used to manually test the functionalities of this package. This also serves as a good starting point example.
+
+You can test django-select2light using github repository (also you should consider using virtualenv and virtualenvwrapper)
+* mkvirtualenv django-select2light-test
+* git clone https://github.com/ouhouhsami/django-select2light.git
+* cd django-select2light
+* pip install -r requirements.txt
+* add2virtualenv select2light
+* cd testapp
+* python manage.py syncdb
+* python manage.py runserver
+* go to http://127.0.0.1:8000/
+
+You can also test this application using the tar.gz archive available on pypi.
+* Download the tar.gz https://pypi.python.org/pypi/django-select2light/
+* Extract it
+* run 'python setup.py install'
+* cd into testapp
+* python manage.py syncdb
+* python manage.py runserver
+* go to http://127.0.0.1:8000/
 
 
 License

@@ -1,3 +1,5 @@
 include *.txt *.md
 recursive-include select2light/static *.*
-recursive-exclude select2light/static .DS_Store
+recursive-include select2light/templates *.*
+recursive-include testapp *.py *.html *.json
+recursive-exclude testapp .DS_Store
