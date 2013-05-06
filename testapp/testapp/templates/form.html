@@ -1,0 +1,15 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{ form.media }}
+</head>
+<body>
+<form method="post" action="">
+	{% csrf_token %}
+	<table>
+		{{ form }}
+	</table>
+	<input type="submit" value="Submit Form"/>
+</form>
+</body>

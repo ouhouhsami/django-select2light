@@ -1,0 +1,58 @@
+{% include "floppyforms/input.html" %}
+<div id="{{ attrs.id }}_" style="width:300px" />
+<script type="text/javascript">
+  $(document).ready(function() {
+  	$("#{{ attrs.id }}_").select2({
+		allowClear: {% if required %}false{% else %}true{% endif %}, 
+		multiple: {{ multiple|lower }},
+		minimumInputLength: {{ minimumInputLength }}, 
+		minimumResultsForSearch: {{ minimumResultsForSearch }}, 
+		closeOnSelect: {{ closeOnSelect|lower }}, 
+		placeholder: '{{ placeholder }}', 
+		ajax: {
+			dataType: 'json', 
+			quietMillis: {{ quietMillis }}, 
+			url: "{% url 'api_dispatch_list' resource_name=resource_name api_name=api_name  %}", 
+			data: function (term, page) {
+				return {format: 'json', {{ label_key }}__icontains: term};
+			},
+			results: function (data, page) {
+				return {results: data['objects']};
+			}
+		}, 
+		{% if value %}
+		initSelection: function(element, callback) {
+			$.ajax(
+				{% if not multiple %}
+				"{% url 'api_dispatch_detail' resource_name=resource_name api_name=api_name pk=value %}"
+				{% else %}
+				"{% url 'api_get_multiple' resource_name=resource_name api_name=api_name pk_list=pk_list %}"
+				{% endif %}, {
+				data: {
+					format: 'json'
+				},
+				dataType: 'json'
+			}).done(function(data) { 
+				{% if not multiple %}
+				callback(data); 
+				{% else %}
+				callback(data.objects); 
+				{% endif %}
+			});
+		},
+		{% endif %}
+		formatResult: function(item){
+			return item.{{ label_key }};
+		}, 
+		formatSelection: function(item){
+			return item.{{ label_key }}
+		}, 
+		escapeMarkup: function (m) { return m; },
+		
+	})
+	.on("change", function(e){
+		// set the value to the hidden field (or remove it if select2 is cleared)
+		$("#{{ attrs.id }}").val(e.val);
+	})
+});
+</script>

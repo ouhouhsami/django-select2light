@@ -1,0 +1,3 @@
+include *.txt *.md
+recursive-include select2light/static *.*
+recursive-exclude select2light/static .DS_Store
