@@ -88,17 +88,17 @@ Set the urls with your API enabled (see [urls.py](https://github.com/ouhouhsami/
 	[...]
 
 	urlpatterns += patterns('',
-       (r'^api/', include(v1_api.urls)),
+       (r'^api/', include(foo_api.urls)),
     )
 	
 
 ### select2light part
 
-Associate `AjaxSelect2Widget` to your `ModelChoiceField`, or `AjaxSelect2MultipleWidget` to your `ModelMultipleChoiceField` in a form. 
-Inside `AjaxSelect2Widget` or `AjaxSelect2MultipleWidget` you must set params `resource_name`, `api_name`, `label_key`: 
-* `resource_name` (required) is the value set in your tastypie ModelResource (see [api.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/api.py#L13))
-* `api_name` (required) is the value of your api, set in your urls.py (see [urls.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/urls.py))
-* `label_key` (optional) corresponds to the field you want to search on your ModelResource. Default is set to 'name', there are two ways to work with it: you can add a field name `name` to your ModelResource (and use dehydrate tastypie functionality) or you can set `label_key` to a custom field on your ModelResource to search by this key.
+Associate `AjaxSelect2Widget` to your `ModelChoiceField` (or `AjaxSelect2MultipleWidget` to your `ModelMultipleChoiceField`) in a Form class. 
+Inside `AjaxSelect2Widget` (or `AjaxSelect2MultipleWidget`) you configure the following params: 
+* `resource_name` (required) is the value set in your tastypie ModelResource (see example [api.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/api.py#L13))
+* `api_name` (required) is the value of your api, set in your urls.py (see example [urls.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/urls.py#L6))
+* `label_key` (optional) corresponds to the field you want to search on in your ModelResource. Default is set to 'name'. There are two ways to work with it: you can add a field name `name` to your ModelResource (and [use dehydrate tastypie functionality](http://django-tastypie.readthedocs.org/en/latest/cookbook.html#adding-custom-values)) or you can set `label_key` to a custom field on your ModelResource to search by this key.
 
 	```
 	# forms.py
