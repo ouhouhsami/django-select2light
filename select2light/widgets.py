@@ -40,6 +40,7 @@ class AjaxSelect2Widget(forms.TextInput):
             'resource_name': self.resource_name,
             'api_name': self.api_name
         })
+        ctx['type'] = 'hidden'
         return ctx
 
     class Media:
