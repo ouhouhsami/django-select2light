@@ -127,7 +127,7 @@ setup(
         'Django>=1.4.2',
         'django-floppyforms>=1.0',
         'django-tastypie>=0.9'
-    ]
+    ],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Web Environment",
