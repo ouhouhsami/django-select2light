@@ -100,17 +100,20 @@ Inside `AjaxSelect2Widget` (or `AjaxSelect2MultipleWidget`) you configure the fo
 * `api_name` (required) is the value of your api, set in your urls.py (see example [urls.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/urls.py#L6))
 * `label_key` (optional) corresponds to the field you want to search on in your ModelResource. Default is set to 'name'. There are two ways to work with it: you can add a field name `name` to your ModelResource (and [use dehydrate tastypie functionality](http://django-tastypie.readthedocs.org/en/latest/cookbook.html#adding-custom-values)) or you can set `label_key` to a custom field on your ModelResource to search by this key.
 
-	```
-	# forms.py
-	from models import Bar
-	import floppyforms as forms
-	form select2light.wigets import AjaxSelect2Widget
+```
+# forms.py file
+from models import Bar
+import floppyforms as forms
+form select2light.wigets import AjaxSelect2Widget
 
-	class FooForm(form.Form):
-		# assuming Bar model has a name field
-		bar = forms.ModelChoiceField(queryset=Bar.objects.all(),
-		                             widget=AjaxSelect2Widget(resource_name='bar', api_name='foobar'))
-	```
+class FooForm(form.Form):
+	# assuming Bar model has a name field
+	bar = forms.ModelChoiceField(queryset=Bar.objects.all(),
+	                             widget=AjaxSelect2Widget(resource_name='bar', api_name='foobar'))
+```
+
+Note:
+For ModelForm you can just override widget dict in class Meta of your ModelForm, as done in test app [forms.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/forms.py#L14). 
 
 
 Example Application
