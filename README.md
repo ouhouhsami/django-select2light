@@ -143,9 +143,10 @@ For ModelForm you can just override widget dict in class Meta of your ModelForm,
 To go further (shared ideas)
 ============================
 
-* We should considere replace Select2 with a custom HTML5 datalist implementation
-* We should be RestAPI agnostic, try to work with any of the Django Rest Framework mentioned above
-* We should add Travis CI as continuous integration service.
+* considere replace Select2 with a custom HTML5 datalist implementation
+* be Rest framework agnostic, try to work with any of the Django Rest Framework mentioned above
+* add Travis CI as continuous integration service
+* add admin integration examples
 
 
 Changelog
