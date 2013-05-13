@@ -1,4 +1,8 @@
 {% include "floppyforms/select.html" %}
 <script type="text/javascript">
-  $(document).ready(function() {  $("#{{ attrs.id }}").select2(); });
+  $(document).ready(function() {
+  	$("#{{ attrs.id }}").select2({
+  		escapeMarkup: function (m) { return m; }
+  	}); 
+  });
 </script>

@@ -7,4 +7,6 @@ urlpatterns = patterns('testapp.testmain.views',
 
     url(r'multi/model/field/$', 'test_multi_values_model_field', name='test_multi_values_model_field'),
     url(r'multi/model/field/([0-9]+)/$', 'test_multi_values_model_field1', name='test_multi_values_model_field1'),
+
+    url(r'mixed/form/$', 'test_mixed_form', name='test_mixed_form'),
 )

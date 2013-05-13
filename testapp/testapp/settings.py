@@ -134,4 +134,9 @@ INSTALLED_APPS = (
     'tastypie',
     'select2light',
     'testapp.testmain',
+    'django_coverage',
 )
+
+TEST_RUNNER = 'django_coverage.coverage_runner.CoverageRunner'
+
+COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(parent_folder, 'coverage')

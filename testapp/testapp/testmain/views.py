@@ -2,7 +2,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
-from .forms import EmployeeForm, DeptForm
+from .forms import EmployeeForm, DeptForm, MixedForm
 from .models import Employee, Dept
 
 
@@ -43,4 +43,13 @@ def test_multi_values_model_field1(request, id):
             return HttpResponseRedirect(reverse('home'))
     else:
         form = DeptForm(instance=dept)
+    return render(request, 'form.html', {'form': form})
+
+
+def test_mixed_form(request):
+    if request.POST:
+        form = MixedForm(request.POST)
+        form.is_valid()
+    else:
+        form = MixedForm()
     return render(request, 'form.html', {'form': form})

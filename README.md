@@ -36,20 +36,32 @@ Usage
 Select2Widget
 -------------
 
-This is just a widget customization. Using Select2Widget, you just replace the default widget with Select2Widget for your field.
-You can seen a usage exemple within `EmployeeForm` class Meta in [forms.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/forms.py#L13)
-You can also set it as follow:
+This is just a widget customization. Using Select2Widget or Select2MultipleWidget, you just replace the default widget with Select2Widget for your ModelChoiceField or ModelMultipleChoiceField.
+
+You can set it as follow:
 
 	import floppyforms as forms
-	from select2light.widgets import Select2Widget
+	from select2light.models import Select2ModelChoiceField, Select2ModelMultipleChoiceField
+	from select2light.widgets import Select2Widget, Select2MultipleWidget
 	form models import Bar, Baz
 
+	# use directly the custom field
+	class FooForm(forms.Form):
+		bar = Select2ModelChoiceField(queryset=Bar.objects.all()) 
+		bazs = Select2ModelMultipleChoiceField(queryset=Baz.objects.all())
+
+	# ... or just use the widget
 	class FooForm(forms.Form):
 		bar = forms.ModelChoiceField(queryset=Bar.objects.all(), widget=Select2Widget) 
-		bazs = forms.ModelMultipleChoiceField(queryset=Baz.objects.all(), widget=Select2Widget)
+		bazs = forms.ModelMultipleChoiceField(queryset=Baz.objects.all(), widget=Select2MultipleWidget)
 
 
-Note: If you only use Select2Widget (and not the Ajax widgets as described below), you don't need to install tastypie nor floppyforms.
+You can also see an usage exemple within the `EmployeeForm` ModelForm class Meta in [forms.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/forms.py#L13)
+
+Note: 
+* If you only use Select2Widget (and not the Ajax widgets as described below), you don't need to install tastypie nor floppyforms.
+* If you want to set specific params to the Select2 instanciation (see list in Constructor part of this page http://ivaynberg.github.io/select2/), for this case, you need to override the default select2light/select2.html template. Depending on user needs, we could consider, as below for the Ajax widgets, having some instantiations params that would configure select2 widget.
+
 
 AjaxSelect2Widget and AjaxSelect2MultipleWidget
 -----------------------------------------------
@@ -85,7 +97,7 @@ Set the urls with your API enabled (see [urls.py](https://github.com/ouhouhsami/
 	foo_api = Api(api_name='foobar')
 	foo_api.register(BarResource())
 
-	[...]
+	# ... your urlpatterns
 
 	urlpatterns += patterns('',
        (r'^api/', include(foo_api.urls)),
@@ -96,7 +108,7 @@ Set the urls with your API enabled (see [urls.py](https://github.com/ouhouhsami/
 
 Associate `AjaxSelect2Widget` to your `ModelChoiceField` (or `AjaxSelect2MultipleWidget` to your `ModelMultipleChoiceField`) in a Form class. 
 Inside `AjaxSelect2Widget` (or `AjaxSelect2MultipleWidget`) you configure the following params: 
-* `resource_name` (required) is the value set in your tastypie ModelResource (see example [api.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/api.py#L13))
+* `resource_name` (required) is the value set in your tastypie ModelResource (see example [api.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/api.py#L14))
 * `api_name` (required) is the value of your api, set in your urls.py (see example [urls.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/urls.py#L6))
 * `label_key` (optional) corresponds to the field you want to search on in your ModelResource. Default is set to 'name'. There are two ways to work with it: you can add a field name `name` to your ModelResource (and [use dehydrate tastypie functionality](http://django-tastypie.readthedocs.org/en/latest/cookbook.html#adding-custom-values)) or you can set `label_key` to a custom field on your ModelResource to search by this key.
 
@@ -104,16 +116,52 @@ Inside `AjaxSelect2Widget` (or `AjaxSelect2MultipleWidget`) you configure the fo
 # forms.py file
 from models import Bar
 import floppyforms as forms
-form select2light.wigets import AjaxSelect2Widget
+form select2light.models import AjaxSelect2ModelChoiceField, AjaxSelect2ModelMultipleChoiceField
+form select2light.wigets import AjaxSelect2Widget, AjaxSelect2MultipleWidget
 
+# use directly the custom field
+class FooForm(form.Form):
+	# assuming Bar model has a name field
+	bar = AjaxSelect2ModelChoiceField(queryset=Bar.objects.all(),
+	                                  resource_name='bar', api_name='foobar')
+	bazs = AjaxSelect2ModelMultipleChoiceField(queryset=Baz.objects.all(),
+	                                           resource_name='bar', api_name='foobar')
+
+# ... or just use the widget
 class FooForm(form.Form):
 	# assuming Bar model has a name field
 	bar = forms.ModelChoiceField(queryset=Bar.objects.all(),
 	                             widget=AjaxSelect2Widget(resource_name='bar', api_name='foobar'))
+	bazs = forms.ModelMultipleChoiceField(queryset=Baz.objects.all(),
+										  widget=AjaxSelect2MultipleWidget(resource_name='baz', api_name='foobar'))
 ```
 
 Note:
-For ModelForm you can just override widget dict in class Meta of your ModelForm, as done in test app [forms.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/forms.py#L14). 
+For ModelForm you can just override widget dict in class Meta of your ModelForm, as done in test app [forms.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/forms.py#L15). 
+
+
+To go further (shared ideas)
+============================
+
+* We should considere replace Select2 with a custom HTML5 datalist implementation
+* We should be RestAPI agnostic, try to work with any of the Django Rest Framework mentioned above
+* We should add Travis CI as continuous integration service.
+
+
+Changelog
+=========
+
+0.2
+* Add tests
+* Add fields Select2ModelChoiceField, Select2ModelMultipleChoiceField, AjaxSelect2ModelChoiceField, AjaxSelect2ModelMultipleChoiceField for convenience
+* Update README
+
+0.1
+* First release to test the feasibility, using base structuration proposed by [AppleGrew](https://github.com/applegrew)
+
+
+
+
 
 
 Example Application
@@ -128,6 +176,7 @@ You can test django-select2light using github repository (also you should consid
 	git clone https://github.com/ouhouhsami/django-select2light.git
 	cd django-select2light
 	pip install -r requirements.txt
+	pip install -r requirements-tests.txt
 	add2virtualenv select2light
 	cd testapp
 	python manage.py syncdb
@@ -141,6 +190,7 @@ You can also test this application using the tar.gz archive available on pypi.
 	Download the tar.gz https://pypi.python.org/pypi/django-select2light/
 	Extract it
 	run 'python setup.py install'
+	install converage and django-coverage
 	cd into testapp
 	python manage.py syncdb
 	python manage.py runserver
