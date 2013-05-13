@@ -143,10 +143,11 @@ For ModelForm you can just override widget dict in class Meta of your ModelForm,
 To go further (shared ideas)
 ============================
 
-* considere replace Select2 with a custom HTML5 datalist implementation
-* be Rest framework agnostic, try to work with any of the Django Rest Framework mentioned above
-* add Travis CI as continuous integration service
-* add admin integration examples
+* Consider replacing Select2 with a custom HTML5 datalist implementation
+* Be Rest framework agnostic, try to work with any of the Django Rest Framework mentioned above
+* Add Travis CI as continuous integration service
+* Add admin integration examples
+* Remove 'Hold down "Control", or "Command" on a Mac, to select more than one.' on select multiple widget rendering.
 
 
 Changelog
@@ -159,10 +160,6 @@ Changelog
 
 0.1
 * First release to test the feasibility, using base structuration proposed by [AppleGrew](https://github.com/applegrew)
-
-
-
-
 
 
 Example Application
