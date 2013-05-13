@@ -152,12 +152,13 @@ To go further (shared ideas)
 * Consider replacing Select2 with a custom HTML5 datalist implementation
 * Be Rest framework agnostic, try to work with any of the Django Rest Framework mentioned above
 * Add Travis CI as continuous integration service
-* Add admin integration examples
 * Remove 'Hold down "Control", or "Command" on a Mac, to select more than one.' on select multiple widget rendering.
 
 
 Changelog
 =========
+
+* Add admin integration examples
 
 0.2
 * Add tests
