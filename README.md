@@ -33,10 +33,10 @@ Note:
 Usage
 =====
 
-Select2Widget
--------------
+Select2Widget and Select2MultipleWidget
+---------------------------------------
 
-This is just a widget customization. Using Select2Widget or Select2MultipleWidget, you just replace the default widget with Select2Widget for your ModelChoiceField or ModelMultipleChoiceField.
+This is just a widget customization. Using Select2Widget or Select2MultipleWidget, you will replace the default widget with Select2Widget for your ModelChoiceField or Select2MultipleWidget for your ModelMultipleChoiceField.
 
 You can set it as follow:
 
@@ -138,6 +138,12 @@ class FooForm(form.Form):
 
 Note:
 For ModelForm you can just override widget dict in class Meta of your ModelForm, as done in test app [forms.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/forms.py#L15). 
+
+
+Admin integration
+=================
+
+You can use the widgets or the fields in the admin. The testapp project propose different use cases, see [admin.py](https://github.com/ouhouhsami/django-select2light/blob/master/testapp/testapp/testmain/admin.py) for examples.
 
 
 To go further (shared ideas)

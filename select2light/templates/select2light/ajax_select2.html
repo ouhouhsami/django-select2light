@@ -1,5 +1,5 @@
 {% include "floppyforms/input.html" %}
-<div id="{{ attrs.id }}_" style="width:300px" />
+<div id="{{ attrs.id }}_" style="width:300px">
 <script type="text/javascript">
   $(document).ready(function() {
   	$("#{{ attrs.id }}_").select2({
@@ -33,6 +33,7 @@
 				},
 				dataType: 'json'
 			}).done(function(data) { 
+				console.log(data);
 				{% if not multiple %}
 				callback(data); 
 				{% else %}
@@ -56,3 +57,4 @@
 	})
 });
 </script>
+</div>
