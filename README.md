@@ -161,6 +161,7 @@ To go further (shared ideas)
 Changelog
 =========
 
+0.3
 * Add Travis CI as continuous integration service
 * Add admin integration examples
 
