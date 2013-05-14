@@ -1,9 +1,12 @@
 Django-Select2Light
 ===================
 
+[![Build Status](https://travis-ci.org/ouhouhsami/django-select2light.png?branch=master)](https://travis-ci.org/ouhouhsami/django-select2light)
+
 This is a [Django](https://www.djangoproject.com/) integration of [Select2](http://ivaynberg.github.com/select2/).
 
 The app includes Select2 driven Django Widgets, and is based on an initial great work by [AppleGrew](https://github.com/applegrew)
+
 
 Installation
 ============
@@ -29,6 +32,7 @@ External Dependencies
 Note: 
 * This application provides a copy of jquery and a 'personal ugly hack' of select2 version 3.3.2 (see select2light/static/select2-3.3.2/select2.js initSelection: for single and multi fields)
 * For this package I used [django-tastypie](http://django-tastypie.readthedocs.org/en/latest/), but we could easily use [django-rest-framework](http://django-rest-framework.org/), as well a [django-piston](https://django-piston.readthedocs.org/en/latest/documentation.html))
+
 
 Usage
 =====
@@ -151,13 +155,13 @@ To go further (shared ideas)
 
 * Consider replacing Select2 with a custom HTML5 datalist implementation
 * Be Rest framework agnostic, try to work with any of the Django Rest Framework mentioned above
-* Add Travis CI as continuous integration service
 * Remove 'Hold down "Control", or "Command" on a Mac, to select more than one.' on select multiple widget rendering.
 
 
 Changelog
 =========
 
+* Add Travis CI as continuous integration service
 * Add admin integration examples
 
 0.2
